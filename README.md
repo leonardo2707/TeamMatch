@@ -1,2 +1,2 @@
 # TeamMatch
-Programa para dividir grupo de pessoas em equipe
+Programa para dividir grupo de pessoas em equipes
