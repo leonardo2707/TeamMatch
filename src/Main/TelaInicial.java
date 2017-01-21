@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package Main;
-import Funcoes.GerenciadorDeJanelas;
+
 /**
  *
  * @author emerson
  */
 public class TelaInicial extends javax.swing.JFrame {
-private GerenciadorDeJanelas dados = new GerenciadorDeJanelas();
+
     /**
      * Creates new form TelaInicial
      */
@@ -394,7 +394,7 @@ private GerenciadorDeJanelas dados = new GerenciadorDeJanelas();
 
     private void editarPessoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPessoasActionPerformed
         // TODO add your handling code here:
-        EditarPessoas janela = new EditarPessoas(dados);
+        EditarPessoas janela = new EditarPessoas(/*dados*/);
         janela.setVisible(true);
         janela.setDefaultCloseOperation(janela.DISPOSE_ON_CLOSE);
         
@@ -407,7 +407,7 @@ private GerenciadorDeJanelas dados = new GerenciadorDeJanelas();
     private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
         // TODO add your handling code here:
         String nomes;
-        nomes = dados.pegar_nomes();
+  
         
        
        /* String vetorNomes[] = nomes.split(Pattern.quote("##$@%%$BHdas"));
@@ -419,7 +419,7 @@ private GerenciadorDeJanelas dados = new GerenciadorDeJanelas();
 
     private void limparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparCamposActionPerformed
         // TODO add your handling code here:
-        dados.setContador(0);
+   
         listaPessoas.clear();
     }//GEN-LAST:event_limparCamposActionPerformed
 

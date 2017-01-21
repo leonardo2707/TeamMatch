@@ -5,7 +5,7 @@
  */
 package Main;
 
-import Funcoes.GerenciadorDeJanelas;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class EditarPessoas extends javax.swing.JFrame {
 
-    GerenciadorDeJanelas dados = new GerenciadorDeJanelas();
+ //   GerenciadorDeJanelas dados = new GerenciadorDeJanelas();
 
     /**
      * Creates new form EditarPessoas
@@ -24,11 +24,11 @@ public class EditarPessoas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    public EditarPessoas(GerenciadorDeJanelas dados) {
+/*    public EditarPessoas(GerenciadorDeJanelas dados) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.dados = dados;
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -114,7 +114,7 @@ public class EditarPessoas extends javax.swing.JFrame {
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
 
-        if (campoNome.getText().trim().equals("") || campoNome.getText().isEmpty()) {
+  /*      if (campoNome.getText().trim().equals("") || campoNome.getText().isEmpty()) {
             //não passou nada
             JOptionPane.showMessageDialog(null, "Não foi possivel adicionar");
             
@@ -132,11 +132,11 @@ public class EditarPessoas extends javax.swing.JFrame {
         nomes = dados.pegar_nomes();
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
-
+*/
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
