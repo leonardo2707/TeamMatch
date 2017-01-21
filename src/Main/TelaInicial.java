@@ -5,13 +5,12 @@
  */
 package Main;
 import Funcoes.GerenciadorDeJanelas;
-
 /**
  *
  * @author emerson
  */
 public class TelaInicial extends javax.swing.JFrame {
-private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
+private GerenciadorDeJanelas dados = new GerenciadorDeJanelas();
     /**
      * Creates new form TelaInicial
      */
@@ -31,7 +30,7 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        list1 = new java.awt.List();
+        listaPessoas = new java.awt.List();
         jPanel3 = new javax.swing.JPanel();
         txtTimeDelta = new java.awt.Label();
         jPanel4 = new javax.swing.JPanel();
@@ -49,6 +48,7 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
         jPanel11 = new javax.swing.JPanel();
         button3 = new java.awt.Button();
         button4 = new java.awt.Button();
+        atualizar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -57,6 +57,7 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
         jMenu2 = new javax.swing.JMenu();
         editarPessoas = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        limparCampos = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,20 +66,26 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
 
         jPanel2.setBackground(new java.awt.Color(254, 254, 254));
 
+        listaPessoas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaPessoasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(list1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(listaPessoas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(list1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(listaPessoas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -248,6 +255,13 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
         button4.setBackground(new java.awt.Color(219, 216, 216));
         button4.setLabel("Dividir Equipes");
 
+        atualizar.setText("Atualizar");
+        atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -258,7 +272,9 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
                         .addGap(54, 54, 54)
                         .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
+                        .addContainerGap()
+                        .addComponent(atualizar)
+                        .addGap(52, 52, 52)
                         .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -268,7 +284,9 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
                 .addContainerGap()
                 .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(atualizar))
                 .addContainerGap())
         );
 
@@ -345,6 +363,14 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
         jMenuItem5.setText("Grupos Manualmente");
         jMenu2.add(jMenuItem5);
 
+        limparCampos.setText("Limpar Campos");
+        limparCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparCamposActionPerformed(evt);
+            }
+        });
+        jMenu2.add(limparCampos);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("sobre");
@@ -368,11 +394,34 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
 
     private void editarPessoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPessoasActionPerformed
         // TODO add your handling code here:
-        EditarPessoas janela = new EditarPessoas(gerenciador);
+        EditarPessoas janela = new EditarPessoas(dados);
         janela.setVisible(true);
         janela.setDefaultCloseOperation(janela.DISPOSE_ON_CLOSE);
         
     }//GEN-LAST:event_editarPessoasActionPerformed
+  
+    private void listaPessoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaPessoasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaPessoasActionPerformed
+
+    private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
+        // TODO add your handling code here:
+        String nomes;
+        nomes = dados.pegar_nomes();
+        
+       
+       /* String vetorNomes[] = nomes.split(Pattern.quote("##$@%%$BHdas"));
+        for(int i=0; i < gerenciador.getContador(); i++)
+        {
+            listaPessoas.add(vetorNomes[i]);
+        }*/
+    }//GEN-LAST:event_atualizarActionPerformed
+
+    private void limparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparCamposActionPerformed
+        // TODO add your handling code here:
+        dados.setContador(0);
+        listaPessoas.clear();
+    }//GEN-LAST:event_limparCamposActionPerformed
 
     /**
      * @param args the command line arguments
@@ -410,6 +459,7 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atualizar;
     private java.awt.Button button1;
     private java.awt.Button button2;
     private java.awt.Button button3;
@@ -433,9 +483,10 @@ private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private java.awt.List list1;
+    private javax.swing.JMenuItem limparCampos;
     private java.awt.List list2;
     private java.awt.List list3;
+    private java.awt.List listaPessoas;
     private java.awt.Label txtPessoas;
     private java.awt.Label txtTimeAlfa;
     private java.awt.Label txtTimeDelta;

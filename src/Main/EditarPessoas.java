@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class EditarPessoas extends javax.swing.JFrame {
 
-    GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
+    GerenciadorDeJanelas dados = new GerenciadorDeJanelas();
 
     /**
      * Creates new form EditarPessoas
@@ -24,10 +24,10 @@ public class EditarPessoas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    public EditarPessoas(GerenciadorDeJanelas gerenciador) {
+    public EditarPessoas(GerenciadorDeJanelas dados) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.gerenciador = gerenciador;
+        this.dados = dados;
     }
 
     /**
@@ -123,10 +123,13 @@ public class EditarPessoas extends javax.swing.JFrame {
             String nome = (campoNome.getText());
             campoNome.setText("");
             if (nome != null && !nome.isEmpty()) {
-                gerenciador.inserir_Lista_Pessoas(nome);
+                dados.inserir_Lista_Pessoas(nome);
                 JOptionPane.showMessageDialog(null, nome + " adicionado com sucesso");
+                
             }
         }
+        String nomes;
+        nomes = dados.pegar_nomes();
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 

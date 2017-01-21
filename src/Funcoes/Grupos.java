@@ -48,5 +48,23 @@ public class Grupos {
         return lista;
     }
     
-    
+    public String retornarNomes()
+    {
+                String nomes = "";
+        //juntar os nomes em uma unica String e dividir eles com os caracteres ##$@%%$BHdas
+        NoPessoas pegar_nomes = new NoPessoas();
+        if (lista_Pessoas != null) {
+            pegar_nomes = lista_Pessoas.getNoProxPessoa();
+
+            while (pegar_nomes != null) {
+                nomes = nomes + pegar_nomes.getPessoa().getNome() + "##$@%%$BHdas";
+                System.out.println("nomes = " + nomes );
+            }
+        }else
+        {
+            System.out.println("lista nula");
+        }
+
+        return nomes;
+    }
 }
