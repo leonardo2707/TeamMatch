@@ -4,18 +4,20 @@
  * and open the template in the editor.
  */
 package Main;
+import Funcoes.GerenciadorDeJanelas;
 
 /**
  *
  * @author emerson
  */
 public class TelaInicial extends javax.swing.JFrame {
-
+private GerenciadorDeJanelas gerenciador = new GerenciadorDeJanelas();
     /**
      * Creates new form TelaInicial
      */
     public TelaInicial() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -53,7 +55,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        editarPessoas = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
@@ -194,7 +196,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel9.setBackground(new java.awt.Color(173, 53, 53));
+        jPanel9.setBackground(new java.awt.Color(1, 1, 1));
 
         button2.setBackground(new java.awt.Color(219, 216, 216));
         button2.setLabel("Venceu");
@@ -216,7 +218,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel10.setBackground(new java.awt.Color(173, 53, 53));
+        jPanel10.setBackground(new java.awt.Color(1, 1, 1));
 
         button1.setBackground(new java.awt.Color(219, 216, 216));
         button1.setLabel("Venceu");
@@ -238,7 +240,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap(85, Short.MAX_VALUE))
         );
 
-        jPanel11.setBackground(new java.awt.Color(173, 53, 53));
+        jPanel11.setBackground(new java.awt.Color(1, 1, 1));
 
         button3.setBackground(new java.awt.Color(219, 216, 216));
         button3.setLabel("Empate");
@@ -331,8 +333,14 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jMenu2.setText("Editar");
 
-        jMenuItem4.setText("Pessoas");
-        jMenu2.add(jMenuItem4);
+        editarPessoas.setText("Pessoas");
+        editarPessoas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarPessoasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(editarPessoas);
+        editarPessoas.getAccessibleContext().setAccessibleName("EditarPessoas");
 
         jMenuItem5.setText("Grupos Manualmente");
         jMenu2.add(jMenuItem5);
@@ -357,6 +365,14 @@ public class TelaInicial extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void editarPessoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPessoasActionPerformed
+        // TODO add your handling code here:
+        EditarPessoas janela = new EditarPessoas(gerenciador);
+        janela.setVisible(true);
+        janela.setDefaultCloseOperation(janela.DISPOSE_ON_CLOSE);
+        
+    }//GEN-LAST:event_editarPessoasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -398,6 +414,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private java.awt.Button button2;
     private java.awt.Button button3;
     private java.awt.Button button4;
+    private javax.swing.JMenuItem editarPessoas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -405,7 +422,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -414,11 +430,9 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private java.awt.Label label2;
     private java.awt.List list1;
     private java.awt.List list2;
     private java.awt.List list3;
