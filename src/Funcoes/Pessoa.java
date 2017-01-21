@@ -13,9 +13,19 @@ public class Pessoa {
     private String nome;
     private int codigo;
     
+    public void Pessoa()
+    {}
+    
     public void Pessoa(String nome, int codigo)
-    {
+    {   this.nome = nome;
+        this.codigo = codigo;
+    }
+
+    public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 

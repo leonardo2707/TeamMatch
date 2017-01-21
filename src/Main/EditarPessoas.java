@@ -116,14 +116,14 @@ public class EditarPessoas extends javax.swing.JFrame {
 
         if (campoNome.getText().trim().equals("") || campoNome.getText().isEmpty()) {
             //não passou nada
-            JOptionPane.showMessageDialog(null, "Não foi possivel adicionar nada");
-            //(null,"verifique o nome dos vertices!!","Sucesso",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Não foi possivel adicionar");
             
         } else {
 
             String nome = (campoNome.getText());
             campoNome.setText("");
             if (nome != null && !nome.isEmpty()) {
+                gerenciador.inserir_Lista_Pessoas(nome);
                 JOptionPane.showMessageDialog(null, nome + " adicionado com sucesso");
             }
         }

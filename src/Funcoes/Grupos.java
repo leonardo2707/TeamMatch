@@ -13,13 +13,40 @@ public class Grupos {
     private NoPessoas lista_Pessoas;
     private NoPessoas grupoAlfa;
     private NoPessoas grupoDelta;
+    private Pessoa pessoa;
+    private int cod;
+
+    public NoPessoas getGrupoAlfa() {
+        return grupoAlfa;
+    }
+
+    public NoPessoas getGrupoDelta() {
+        return grupoDelta;
+    }
+
 
     public NoPessoas getLista_Pessoas() {
         return lista_Pessoas;
     }
 
-    public void setLista_Pessoas(NoPessoas lista_Pessoas) {
-        this.lista_Pessoas = lista_Pessoas;
+    public void inserirPessoaNaLista(NoPessoas noPessoa) {
+        insereNoPessoas(lista_Pessoas, noPessoa);
     }
+    
+        public NoPessoas insereNoPessoas(NoPessoas lista, NoPessoas novo)
+    {   novo.Cria_NoPessoas(pessoa);
+    
+        if(lista == null)
+        {
+            lista = novo;
+        }else
+        {
+            NoPessoas ultimo = lista.buscaUltimo(lista);
+            novo.setNoAntPessoa(ultimo);
+            ultimo.setNoProxPessoa(novo);
+        }
+        return lista;
+    }
+    
     
 }
