@@ -114,7 +114,7 @@ public class EditarPessoas extends javax.swing.JFrame {
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
 
-  /*      if (campoNome.getText().trim().equals("") || campoNome.getText().isEmpty()) {
+        if (campoNome.getText().trim().equals("") || campoNome.getText().isEmpty()) {
             //não passou nada
             JOptionPane.showMessageDialog(null, "Não foi possivel adicionar");
             
@@ -123,20 +123,18 @@ public class EditarPessoas extends javax.swing.JFrame {
             String nome = (campoNome.getText());
             campoNome.setText("");
             if (nome != null && !nome.isEmpty()) {
-                dados.inserir_Lista_Pessoas(nome);
+                
                 JOptionPane.showMessageDialog(null, nome + " adicionado com sucesso");
                 
             }
         }
-        String nomes;
-        nomes = dados.pegar_nomes();
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
-*/
+
     /**
      * @param args the command line arguments
      */
-    /*public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

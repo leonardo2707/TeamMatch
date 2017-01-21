@@ -394,7 +394,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void editarPessoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPessoasActionPerformed
         // TODO add your handling code here:
-        EditarPessoas janela = new EditarPessoas(/*dados*/);
+        EditarPessoas janela = new EditarPessoas();
         janela.setVisible(true);
         janela.setDefaultCloseOperation(janela.DISPOSE_ON_CLOSE);
         
