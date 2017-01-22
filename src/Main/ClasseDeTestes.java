@@ -69,6 +69,12 @@ public class ClasseDeTestes {
         pessoa.Pessoa(nome, cod);
         this.lista_Pessoas = grupo.inserir_na_lista_pessoas(this.lista_Pessoas,pessoa);
         
+        nome = "Treta da vida";
+        cod = gerador.nextInt(100);
+         
+        pessoa.Pessoa(nome, cod);
+        this.lista_Pessoas = grupo.inserir_na_lista_pessoas(this.lista_Pessoas,pessoa);
+        
         
     }
 

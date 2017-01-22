@@ -18,14 +18,6 @@ public class NoPessoas {
     public void NoPessoas() {
     }
 
-    public NoPessoas Cria_NoPessoas(Pessoa pessoa) {
-        NoPessoas novo = new NoPessoas();
-        novo.pessoa = pessoa;
-        novo.noProxPessoa = null;
-        novo.noAntPessoa = null;
-        return novo;
-    }
-
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }

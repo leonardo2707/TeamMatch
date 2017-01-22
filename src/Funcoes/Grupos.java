@@ -16,13 +16,12 @@ public class Grupos {
     private NoPessoas lista_Pessoas;
     private NoPessoas grupoAlfa;
     private NoPessoas grupoDelta;
-    private NoPessoas noPessoas = new NoPessoas();
     private Pessoa pessoa = new Pessoa();
     private int codigo;
 
-    public NoPessoas inserir_na_lista_pessoas(NoPessoas lista,Pessoa pessoa) {
-        NoPessoas novo = new NoPessoas();
-        novo.Cria_NoPessoas(pessoa);
+    public NoPessoas inserir_na_lista_pessoas(NoPessoas lista, Pessoa pessoa) {
+        NoPessoas novo;
+        novo = Cria_NoPessoas(pessoa);
 
         if (lista == null) {
             lista = novo;
@@ -30,7 +29,6 @@ public class Grupos {
             NoPessoas ultimo = buscaUltima(lista);
             novo.setNoAntPessoa(ultimo);
             ultimo.setNoProxPessoa(novo);
-
         }
         return lista;
     }
@@ -44,7 +42,6 @@ public class Grupos {
                 lista = lista.getNoProxPessoa();
             }
         }
-
     }
 
     public NoPessoas buscaUltima(NoPessoas lista) {
@@ -57,6 +54,14 @@ public class Grupos {
             ultimo = ultimo.getNoProxPessoa();
         }
         return ultimo;
+    }
+
+    public NoPessoas Cria_NoPessoas(Pessoa pessoa) {
+        NoPessoas novo = new NoPessoas();
+        novo.setPessoa(pessoa);
+        novo.setNoProxPessoa(null);
+        novo.setNoAntPessoa(null);
+        return novo;
     }
 
 }
