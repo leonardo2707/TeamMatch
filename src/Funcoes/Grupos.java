@@ -5,8 +5,6 @@
  */
 package Funcoes;
 
-import java.util.Random;
-
 /**
  *
  * @author emerson
@@ -16,12 +14,13 @@ public class Grupos {
     private NoPessoas lista_Pessoas;
     private NoPessoas grupoAlfa;
     private NoPessoas grupoDelta;
-    private Pessoa pessoa = new Pessoa();
-    private int codigo;
 
-    public NoPessoas inserir_na_lista_pessoas(NoPessoas lista, Pessoa pessoa) {
-        NoPessoas novo;
-        novo = Cria_NoPessoas(pessoa);
+    public NoPessoas inserir_na_lista_pessoas(NoPessoas lista, String nome, int codigo) {
+        NoPessoas novo = new NoPessoas();
+        Pessoa pessoa = new Pessoa();
+        
+        pessoa.Pessoa(nome, codigo);
+        novo.Cria_NoPessoas(pessoa);
 
         if (lista == null) {
             lista = novo;
@@ -29,17 +28,21 @@ public class Grupos {
             NoPessoas ultimo = buscaUltima(lista);
             novo.setNoAntPessoa(ultimo);
             ultimo.setNoProxPessoa(novo);
+
         }
+        this.lista_Pessoas = lista;
         return lista;
     }
 
-    public void MostrarNomes(NoPessoas lista) {
+    public void mostraNomes(NoPessoas lista) {
+        NoPessoas mostra = lista;
+        
         if (lista == null) {
-            System.out.println("A lista está vazia");
+            System.out.println("Não há valores");
         } else {
-            while (lista.getNoProxPessoa() != null) {
-                System.out.println("nome = " + lista.getPessoa().getNome());
-                lista = lista.getNoProxPessoa();
+            while (mostra != null) {
+                System.out.println("nome: " + mostra.getPessoa().getNome());
+                mostra = mostra.getNoProxPessoa();
             }
         }
     }
@@ -54,14 +57,6 @@ public class Grupos {
             ultimo = ultimo.getNoProxPessoa();
         }
         return ultimo;
-    }
-
-    public NoPessoas Cria_NoPessoas(Pessoa pessoa) {
-        NoPessoas novo = new NoPessoas();
-        novo.setPessoa(pessoa);
-        novo.setNoProxPessoa(null);
-        novo.setNoAntPessoa(null);
-        return novo;
     }
 
 }

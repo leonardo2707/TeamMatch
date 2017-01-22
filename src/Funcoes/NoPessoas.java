@@ -15,9 +15,6 @@ public class NoPessoas {
     private NoPessoas noProxPessoa;
     private NoPessoas noAntPessoa;
 
-    public void NoPessoas() {
-    }
-
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
@@ -42,6 +39,11 @@ public class NoPessoas {
         return noAntPessoa;
     }
 
-
-    //Fazer função de consulta, busca e deletar e adicionar
+    public NoPessoas Cria_NoPessoas(Pessoa pessoa) {
+        NoPessoas novo = new NoPessoas();
+        this.pessoa = pessoa;
+        this.noProxPessoa = null;
+        this.noAntPessoa = null;
+        return novo;
+    }
 }

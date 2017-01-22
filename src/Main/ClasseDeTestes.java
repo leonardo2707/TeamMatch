@@ -1,14 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Classe de testes, feita para testar o sistema, quando for integrar no sistema as variaveis dela vão para 
+ *uma classe de gerenciamento de janelas, para manter os dados entre as janelas assim como os dados são
+ *mantidos aqui
  */
 package Main;
 
 import java.util.Scanner;
 import Funcoes.Grupos;
 import Funcoes.NoPessoas;
-import Funcoes.Pessoa;
 import java.util.Random;
 
 /**
@@ -19,7 +18,6 @@ public class ClasseDeTestes {
 
     Grupos grupo = new Grupos();
     Scanner scan = new Scanner(System.in);
-    Pessoa pessoa = new Pessoa();
     private NoPessoas lista_Pessoas;
 
     public static void main(String[] args) {
@@ -56,30 +54,29 @@ public class ClasseDeTestes {
          Random gerador = new Random();
          int cod;
          String nome;
-         cod = gerador.nextInt(100);
-         
-         nome = "Emerson Leonardo Zock Alves";
-         
-        pessoa.Pessoa(nome, cod);
-        this.lista_Pessoas = grupo.inserir_na_lista_pessoas(this.lista_Pessoas,pessoa);
+ 
+        nome = "nome 1";
+        cod = gerador.nextInt(100);
+        lista_Pessoas = grupo.inserir_na_lista_pessoas(lista_Pessoas, nome, cod);
         
-        nome = "Teste da Silva";
+        nome = "nome 2";
+        cod = gerador.nextInt(100);
+        lista_Pessoas = grupo.inserir_na_lista_pessoas(lista_Pessoas, nome, cod);
+                
+        nome = "nome 3";
+        cod = gerador.nextInt(100);
+        lista_Pessoas = grupo.inserir_na_lista_pessoas(lista_Pessoas, nome, cod);
+      /*  
+        nome = "nome 4";
         cod = gerador.nextInt(100);
          
         pessoa.Pessoa(nome, cod);
         this.lista_Pessoas = grupo.inserir_na_lista_pessoas(this.lista_Pessoas,pessoa);
-        
-        nome = "Treta da vida";
-        cod = gerador.nextInt(100);
-         
-        pessoa.Pessoa(nome, cod);
-        this.lista_Pessoas = grupo.inserir_na_lista_pessoas(this.lista_Pessoas,pessoa);
-        
-        
+       */ 
     }
 
     public void opcao2() {
-        grupo.MostrarNomes(this.lista_Pessoas);
+        grupo.mostraNomes(lista_Pessoas);
 
     }
 }
