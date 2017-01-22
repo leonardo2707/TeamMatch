@@ -1,8 +1,6 @@
 /build/
-/dist/
-
 node_modules/
-
+nbproject/
 nbproject/private/private/private.properties
 nbproject/private/private.xml  
 nbproject/*
@@ -17,4 +15,4 @@ nbproject/private/*
 *~
 *.log
 *private.xml
-
+/dist/

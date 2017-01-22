@@ -7,7 +7,9 @@ package Main;
 
 import java.util.Scanner;
 import Funcoes.Grupos;
+import Funcoes.NoPessoas;
 import Funcoes.Pessoa;
+import java.util.Random;
 
 /**
  *
@@ -15,10 +17,10 @@ import Funcoes.Pessoa;
  */
 public class ClasseDeTestes {
 
-
     Grupos grupo = new Grupos();
     Scanner scan = new Scanner(System.in);
     Pessoa pessoa = new Pessoa();
+    private NoPessoas lista_Pessoas;
 
     public static void main(String[] args) {
 
@@ -38,28 +40,40 @@ public class ClasseDeTestes {
                     System.out.println("Encerrando Programa");
                     break;
                 case 1:
-                classe.opcao1();
-                break;
+                    classe.opcao1();
+                    break;
                 case 2:
+                    classe.opcao2();
                     break;
                 default:
                     System.out.println("Opção Invalida");
                     break;
-
             }
         }
-        
-        
     }
-          public void opcao1() {
 
+    public void opcao1() {
+         Random gerador = new Random();
+         int cod;
+         String nome;
+         cod = gerador.nextInt(100);
+         
+         nome = "Emerson Leonardo Zock Alves";
+         
+        pessoa.Pessoa(nome, cod);
+        this.lista_Pessoas = grupo.inserir_na_lista_pessoas(this.lista_Pessoas,pessoa);
+        
+        nome = "Teste da Silva";
+        cod = gerador.nextInt(100);
+         
+        pessoa.Pessoa(nome, cod);
+        this.lista_Pessoas = grupo.inserir_na_lista_pessoas(this.lista_Pessoas,pessoa);
+        
         
     }
-          
-          public void opcao2()
-          {
-              grupo.MostrarNomes();
-              
-          }
+
+    public void opcao2() {
+        grupo.MostrarNomes(this.lista_Pessoas);
+
+    }
 }
-

@@ -50,17 +50,6 @@ public class NoPessoas {
         return noAntPessoa;
     }
 
-    public NoPessoas buscaUltimo(NoPessoas lista) {
-        if (lista == null) {
-            return null;
-        }
-
-        NoPessoas ultimo = lista;
-        while (ultimo != null) {
-            ultimo = ultimo.getNoProxPessoa();
-        }
-        return ultimo;
-    }
 
     //Fazer função de consulta, busca e deletar e adicionar
 }
