@@ -63,6 +63,7 @@ public class TelaInicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(1, 1, 1));
+        jPanel1.setName(""); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(254, 254, 254));
 

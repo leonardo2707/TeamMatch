@@ -9,13 +9,8 @@ package Funcoes;
  *
  * @author emerson
  */
-public class Grupos {
-
-    private NoPessoas lista_Pessoas;
-    private NoPessoas grupoAlfa;
-    private NoPessoas grupoDelta;
-
-    public NoPessoas inserir_na_lista_pessoas(NoPessoas lista, String nome, int codigo) {
+public class GerenciarListas {
+    public NoPessoas inserir_na_lista(NoPessoas lista, String nome, int codigo) {
         NoPessoas novo = new NoPessoas();
         Pessoa pessoa = new Pessoa();
 
@@ -30,7 +25,7 @@ public class Grupos {
             ultimo.setNoProxPessoa(novo);
 
         }
-        this.lista_Pessoas = lista;
+        
         return lista;
     }
 
@@ -147,5 +142,4 @@ public class Grupos {
             return null;
         }
     }
-
 }

@@ -5,8 +5,8 @@
  */
 package Main;
 
+import Funcoes.GerenciarListas;
 import java.util.Scanner;
-import Funcoes.Grupos;
 import Funcoes.NoPessoas;
 import java.util.Random;
 
@@ -16,9 +16,11 @@ import java.util.Random;
  */
 public class ClasseDeTestes {
 
-    Grupos grupo = new Grupos();
+    GerenciarListas gerenteLitas = new GerenciarListas();
     Scanner scan = new Scanner(System.in);
     private NoPessoas lista_Pessoas;
+    private NoPessoas lista_Alfa;
+    private NoPessoas lista_Delta;
 
     public static void main(String[] args) {
 
@@ -32,6 +34,9 @@ public class ClasseDeTestes {
             System.out.println("2-Mostrar Nomes das pessoas");
             System.out.println("3-Deletar Lista de pessoas");
             System.out.println("4-Remover pessoa especifica");
+            System.out.println("5-Dividir Times");
+            System.out.println("6-Colocar pessoa especifica em time alfa");
+            System.out.println("7-Limpar Times");
             System.out.println("0-Finalizar o programa");
 
             op = scan.nextInt();
@@ -65,15 +70,15 @@ public class ClasseDeTestes {
  
         nome = "nome 1";
         cod = gerador.nextInt(100);
-        lista_Pessoas = grupo.inserir_na_lista_pessoas(lista_Pessoas, nome, cod);
+        lista_Pessoas = gerenteLitas.inserir_na_lista(lista_Pessoas, nome, cod);
         
         nome = "nome 2";
         cod = gerador.nextInt(100);
-        lista_Pessoas = grupo.inserir_na_lista_pessoas(lista_Pessoas, nome, cod);
+        lista_Pessoas = gerenteLitas.inserir_na_lista(lista_Pessoas, nome, cod);
                 
         nome = "nome 3";
         cod = gerador.nextInt(100);
-        lista_Pessoas = grupo.inserir_na_lista_pessoas(lista_Pessoas, nome, cod);
+        lista_Pessoas = gerenteLitas.inserir_na_lista(lista_Pessoas, nome, cod);
     /*    
         nome = "nome 4";
         cod = gerador.nextInt(100);
@@ -84,13 +89,13 @@ public class ClasseDeTestes {
     }
 
     public void opcao2() {
-        grupo.mostraNomes(lista_Pessoas);
+        gerenteLitas.mostraNomes(lista_Pessoas);
 
     }
     
     public void opcao3()
     {
-        lista_Pessoas = grupo.limparlista(lista_Pessoas);
+        lista_Pessoas = gerenteLitas.limparlista(lista_Pessoas);
     }
     
     public void opcao4()
@@ -98,6 +103,6 @@ public class ClasseDeTestes {
         String nome;
         nome = "nome 2";
         
-        lista_Pessoas = grupo.removerPosicaoNome(nome, lista_Pessoas);
+        lista_Pessoas = gerenteLitas.removerPosicaoNome(nome, lista_Pessoas);
     }
 }
