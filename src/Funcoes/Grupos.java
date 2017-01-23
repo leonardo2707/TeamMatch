@@ -58,10 +58,27 @@ public class Grupos {
         }
         return ultimo;
     }
+    
+    //Da para usar esta função para ferificar se o nome ja existe ou não, só chamar ela e comparar
+    //com o nome enviado, se eles forem iguais significa que ja existe
+    public NoPessoas busca_Nome(String nome, NoPessoas lista) {
+        if (lista == null) {
+            return null;
+        }
 
-    public NoPessoas limparlistaPessoas(NoPessoas lista)//Remove todos os nós da Lista
-    {
-        NoPessoas no = lista; 
+        NoPessoas verifica = lista;
+        while (verifica != null){
+            if(verifica.getPessoa().getNome().equals(nome))
+            {
+                break;
+            }
+            verifica = verifica.getNoProxPessoa();
+        }
+        return verifica;
+    }
+
+    public NoPessoas limparlista(NoPessoas lista) {
+        NoPessoas no = lista;
         NoPessoas aux;
         while (no != null) {
             aux = no;
@@ -70,6 +87,65 @@ public class Grupos {
         }
         lista = null;
         return lista;
+    }
+
+    public NoPessoas removerPosicaoNome(String nome, NoPessoas lista) {
+
+        if ((lista != null)) {
+            NoPessoas no = lista;
+            NoPessoas aux = lista;
+            NoPessoas anterior;
+            NoPessoas ultimo;
+            int contador = 0;
+            
+            while(aux != null)
+            {
+                contador++;
+                aux = aux.getNoProxPessoa();
+            }
+            if(contador == 1)
+            {
+                lista = null;
+                System.out.println("só existe um nome na lista");
+                return null;
+            }
+            
+            no = busca_Nome(nome, lista);
+            ultimo = buscaUltima(lista);
+            
+            if(no == null)
+            {
+                System.out.println("nome não existe na lista");
+                return lista;
+            }
+                
+            if(no.getPessoa().getNome().equals(lista.getPessoa().getNome())) //verifica se é o primeiro da lista
+            {
+                System.out.println("o nome é o primeiro da lista");
+                aux = lista.getNoProxPessoa();
+                lista = null;
+                return aux; 
+            }else if(no.getPessoa().getNome().equals(ultimo.getPessoa().getNome())) //verifica se é o ultimo valor
+            {
+                System.out.println("O nome é o ultimo da lista");
+                aux = no.getNoAntPessoa();
+                ultimo = null;
+                aux.setNoProxPessoa(null);
+                return lista;
+            }else
+            {
+                aux = no.getNoProxPessoa();
+                anterior = no.getNoAntPessoa();
+                no = null;
+                anterior.setNoProxPessoa(aux);
+                return lista;   
+            }
+                
+        }
+        else{
+            System.out.println("lista Vazia");
+            return null;
+        }
     }
 
 }

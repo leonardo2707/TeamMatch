@@ -31,6 +31,7 @@ public class ClasseDeTestes {
             System.out.println("1-Inserir Dados da pessoa");
             System.out.println("2-Mostrar Nomes das pessoas");
             System.out.println("3-Deletar Lista de pessoas");
+            System.out.println("4-Remover pessoa especifica");
             System.out.println("0-Finalizar o programa");
 
             op = scan.nextInt();
@@ -46,6 +47,9 @@ public class ClasseDeTestes {
                     break;
                 case 3:
                     classe.opcao3();
+                    break;
+                case 4:
+                    classe.opcao4();
                     break;
                 default:
                     System.out.println("Opção Invalida");
@@ -70,7 +74,7 @@ public class ClasseDeTestes {
         nome = "nome 3";
         cod = gerador.nextInt(100);
         lista_Pessoas = grupo.inserir_na_lista_pessoas(lista_Pessoas, nome, cod);
-      /*  
+    /*    
         nome = "nome 4";
         cod = gerador.nextInt(100);
          
@@ -86,6 +90,14 @@ public class ClasseDeTestes {
     
     public void opcao3()
     {
-        lista_Pessoas = grupo.limparlistaPessoas(lista_Pessoas);
+        lista_Pessoas = grupo.limparlista(lista_Pessoas);
+    }
+    
+    public void opcao4()
+    {
+        String nome;
+        nome = "nome 2";
+        
+        lista_Pessoas = grupo.removerPosicaoNome(nome, lista_Pessoas);
     }
 }
