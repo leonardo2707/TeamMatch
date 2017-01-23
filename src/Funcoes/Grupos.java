@@ -18,7 +18,7 @@ public class Grupos {
     public NoPessoas inserir_na_lista_pessoas(NoPessoas lista, String nome, int codigo) {
         NoPessoas novo = new NoPessoas();
         Pessoa pessoa = new Pessoa();
-        
+
         pessoa.Pessoa(nome, codigo);
         novo.Cria_NoPessoas(pessoa);
 
@@ -36,7 +36,7 @@ public class Grupos {
 
     public void mostraNomes(NoPessoas lista) {
         NoPessoas mostra = lista;
-        
+
         if (lista == null) {
             System.out.println("Não há valores");
         } else {
@@ -57,6 +57,19 @@ public class Grupos {
             ultimo = ultimo.getNoProxPessoa();
         }
         return ultimo;
+    }
+
+    public NoPessoas limparlistaPessoas(NoPessoas lista)//Remove todos os nós da Lista
+    {
+        NoPessoas no = lista; 
+        NoPessoas aux;
+        while (no != null) {
+            aux = no;
+            no = no.getNoProxPessoa();
+            aux = null;
+        }
+        lista = null;
+        return lista;
     }
 
 }

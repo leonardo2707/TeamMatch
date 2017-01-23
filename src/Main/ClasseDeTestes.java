@@ -30,6 +30,7 @@ public class ClasseDeTestes {
             System.out.println("----MENU PRINCIPAL-----");
             System.out.println("1-Inserir Dados da pessoa");
             System.out.println("2-Mostrar Nomes das pessoas");
+            System.out.println("3-Deletar Lista de pessoas");
             System.out.println("0-Finalizar o programa");
 
             op = scan.nextInt();
@@ -42,6 +43,9 @@ public class ClasseDeTestes {
                     break;
                 case 2:
                     classe.opcao2();
+                    break;
+                case 3:
+                    classe.opcao3();
                     break;
                 default:
                     System.out.println("Opção Invalida");
@@ -78,5 +82,10 @@ public class ClasseDeTestes {
     public void opcao2() {
         grupo.mostraNomes(lista_Pessoas);
 
+    }
+    
+    public void opcao3()
+    {
+        lista_Pessoas = grupo.limparlistaPessoas(lista_Pessoas);
     }
 }
