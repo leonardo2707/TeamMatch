@@ -28,6 +28,80 @@ public class GerenciarListas {
         
         return lista;
     }
+    
+    public NoPessoas dividirTimes( NoPessoas lista, NoPessoas lista_Alfa){
+        int quantidade_pessoas = busca_quantidade_de_pessoas(lista);
+        int par;
+        if(quantidade_pessoas == 0)
+        {
+            System.out.println("não á pessoas na lista");
+            return null;
+        }else if(quantidade_pessoas == 1)
+        {
+            par = lista.getPessoa().getCodigo()%2;
+            if(par == 0)
+            {
+                System.out.println("Só tem uma pessoa na lista");
+                lista_Alfa = inserir_na_lista(lista_Alfa, lista.getPessoa().getNome(), lista.getPessoa().getCodigo());
+                return lista_Alfa;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        quantidade_pessoas = quantidade_pessoas / 2;
+        int contador = 0;
+        NoPessoas contar = lista;
+        
+        //verifica quantos numeros pares tem na lista
+        while (contar != null) {
+            if(contar.getPessoa().getCodigo()%2 == 0)
+            {
+                contador++;
+            }
+                contar = contar.getNoProxPessoa();
+            }
+        if(contador == quantidade_pessoas)
+        {
+            while(lista != null)
+            {
+                if(lista.getPessoa().getCodigo()%2 == 0)
+                {
+                    lista_Alfa = inserir_na_lista(lista_Alfa, lista.getPessoa().getNome(), lista.getPessoa().getCodigo());
+                }
+                lista = lista.getNoProxPessoa();
+            }
+            return lista_Alfa;
+        }else if(contador < quantidade_pessoas)
+        {
+            int i=0;
+            while(lista != null)
+            {
+                if(i < quantidade_pessoas)
+                {
+                    i++;
+                    lista_Alfa = inserir_na_lista(lista_Alfa, lista.getPessoa().getNome(), lista.getPessoa().getCodigo());
+                }
+                lista = lista.getNoProxPessoa();
+            }
+            return lista_Alfa;
+        }
+        else
+        {
+            int i=0;
+            while(lista != null)
+            {
+                if(lista.getPessoa().getCodigo()%2 == 0 && i < quantidade_pessoas)
+                {
+                    i++;
+                    lista_Alfa = inserir_na_lista(lista_Alfa, lista.getPessoa().getNome(), lista.getPessoa().getCodigo());
+                }
+                lista = lista.getNoProxPessoa();
+            }
+            return lista_Alfa;
+        }
+    }
 
     public void mostraNomes(NoPessoas lista) {
         NoPessoas mostra = lista;
@@ -40,6 +114,20 @@ public class GerenciarListas {
                 mostra = mostra.getNoProxPessoa();
             }
         }
+    }
+    
+    
+        public int busca_quantidade_de_pessoas(NoPessoas lista) {
+        if (lista == null) {
+            return 0;
+        }
+        int contador=0;
+        NoPessoas verifica = lista;
+        while (verifica != null){
+            contador++;
+            verifica = verifica.getNoProxPessoa();
+        }
+        return contador;
     }
 
     public NoPessoas buscaUltima(NoPessoas lista) {
@@ -87,7 +175,7 @@ public class GerenciarListas {
     public NoPessoas removerPosicaoNome(String nome, NoPessoas lista) {
 
         if ((lista != null)) {
-            NoPessoas no = lista;
+            NoPessoas no;
             NoPessoas aux = lista;
             NoPessoas anterior;
             NoPessoas ultimo;
@@ -142,4 +230,6 @@ public class GerenciarListas {
             return null;
         }
     }
+    
+    
 }
