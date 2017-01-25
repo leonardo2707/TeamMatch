@@ -35,10 +35,11 @@ public class ClasseDeTestes {
             System.out.println("3-Deletar Lista de pessoas");
             System.out.println("4-Remover pessoa especifica");
             System.out.println("5-Dividir Times");
-            System.out.println("6-Colocar pessoa especifica em time alfa");
-            System.out.println("7-Limpar Times");
-            System.out.println("8-MOSTRAR TIME ALFA");
-            System.out.println("9-MOSTAR TIME DELTA");
+            System.out.println("6-Limpar Times e lista de pessoas");
+            System.out.println("7-MOSTRAR TIME ALFA");
+            System.out.println("8-MOSTAR TIME DELTA");
+            System.out.println("9-Colocar pessoa em time alfa");
+            System.out.println("10-Colocar pessoa em time delta");
             System.out.println("0-Finalizar o programa");
 
             op = scan.nextInt();
@@ -61,11 +62,19 @@ public class ClasseDeTestes {
                 case 5:
                     classe.opcao5();
                     break;
+                case 6:
+                    classe.opcao6();
+                case 7:
+                    classe.opcao7();
+                    break;
                 case 8:
                     classe.opcao8();
                     break;
                 case 9:
                     classe.opcao9();
+                    break;
+                case 10:
+                    classe.opcao10();
                     break;
                 default:
                     System.out.println("Opção Invalida");
@@ -94,10 +103,11 @@ public class ClasseDeTestes {
         nome = "nome 4";
          cod = gerador.nextInt(100);
         lista_Pessoas = gerenteListas.inserir_na_lista(lista_Pessoas, nome, cod);
-      /*   
-        pessoa.Pessoa(nome, cod);
-        this.lista_Pessoas = grupo.inserir_na_lista_pessoas(this.lista_Pessoas,pessoa);
-         */
+        
+         nome = "nome 5";
+         cod = gerador.nextInt(100);
+         lista_Pessoas = gerenteListas.inserir_na_lista(lista_Pessoas, nome, cod);
+         
     }
 
     public void opcao2() {
@@ -117,17 +127,51 @@ public class ClasseDeTestes {
     }
 
     public void opcao5() {
+        lista_Alfa = null;
+        lista_Delta = null;
+        
         lista_Alfa = gerenteListas.dividirTimes(lista_Pessoas, lista_Alfa);
-        // lista_Delta = gerenteListas.Sobras(lista_Pessoas, lista_Alfa);
+        lista_Delta = gerenteListas.sobras(lista_Pessoas, lista_Alfa, lista_Delta);
+    }
+    
+    public void opcao6()
+    {
+        lista_Pessoas = null;
+        lista_Alfa = null;
+        lista_Delta = null;
     }
 
-    public void opcao8() {
+    public void opcao7() {
         gerenteListas.mostraNomes(lista_Alfa);
 
     }
 
-    public void opcao9() {
+    public void opcao8() {
         gerenteListas.mostraNomes(lista_Delta);
 
+    }
+    
+    public void opcao9(){
+        Random gerador = new Random();
+        int cod;
+        String nome;
+
+        nome = "nome x";
+        cod = gerador.nextInt(100);
+        lista_Pessoas = gerenteListas.inserir_na_lista(lista_Pessoas, nome, cod);
+        lista_Alfa = gerenteListas.inserir_na_lista(lista_Alfa, nome, cod);   
+    }
+    
+    public void opcao10()
+    {
+        Random gerador = new Random();
+        int cod;
+        String nome;
+
+        nome = "nome y";
+        cod = gerador.nextInt(100);
+        lista_Pessoas = gerenteListas.inserir_na_lista(lista_Pessoas, nome, cod);
+        lista_Delta = gerenteListas.inserir_na_lista(lista_Delta, nome, cod);  
+        
     }
 }

@@ -5,11 +5,18 @@
  */
 package Funcoes;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  *
  * @author emerson
  */
 public class GerenciarListas {
+
+    List listaArray = new ArrayList();
+
     public NoPessoas inserir_na_lista(NoPessoas lista, String nome, int codigo) {
         NoPessoas novo = new NoPessoas();
         Pessoa pessoa = new Pessoa();
@@ -25,82 +32,62 @@ public class GerenciarListas {
             ultimo.setNoProxPessoa(novo);
 
         }
-        
+
         return lista;
     }
-    
-    public NoPessoas dividirTimes( NoPessoas lista, NoPessoas lista_Alfa){
+
+    public NoPessoas dividirTimes(NoPessoas lista, NoPessoas lista_Alfa) {
         int quantidade_pessoas = busca_quantidade_de_pessoas(lista);
         int par;
-        if(quantidade_pessoas == 0)
-        {
+        NoPessoas sorteado = new NoPessoas();
+
+        if (quantidade_pessoas == 0) {
             System.out.println("não á pessoas na lista");
             return null;
-        }else if(quantidade_pessoas == 1)
-        {
-            par = lista.getPessoa().getCodigo()%2;
-            if(par == 0)
-            {
+        } else if (quantidade_pessoas == 1) {
+            par = lista.getPessoa().getCodigo() % 2;
+            if (par == 0) {
                 System.out.println("Só tem uma pessoa na lista");
                 lista_Alfa = inserir_na_lista(lista_Alfa, lista.getPessoa().getNome(), lista.getPessoa().getCodigo());
                 return lista_Alfa;
-            }
-            else
-            {
+            } else {
                 return null;
             }
         }
         quantidade_pessoas = quantidade_pessoas / 2;
-        int contador = 0;
-        NoPessoas contar = lista;
-        
-        //verifica quantos numeros pares tem na lista
-        while (contar != null) {
-            if(contar.getPessoa().getCodigo()%2 == 0)
-            {
-                contador++;
-            }
-                contar = contar.getNoProxPessoa();
-            }
-        if(contador == quantidade_pessoas)
-        {
-            while(lista != null)
-            {
-                if(lista.getPessoa().getCodigo()%2 == 0)
-                {
-                    lista_Alfa = inserir_na_lista(lista_Alfa, lista.getPessoa().getNome(), lista.getPessoa().getCodigo());
-                }
-                lista = lista.getNoProxPessoa();
-            }
-            return lista_Alfa;
-        }else if(contador < quantidade_pessoas)
-        {
-            int i=0;
-            while(lista != null)
-            {
-                if(i < quantidade_pessoas)
-                {
-                    i++;
-                    lista_Alfa = inserir_na_lista(lista_Alfa, lista.getPessoa().getNome(), lista.getPessoa().getCodigo());
-                }
-                lista = lista.getNoProxPessoa();
-            }
-            return lista_Alfa;
+
+        NoPessoas aux = lista;
+
+        while (aux != null) {
+            listaArray.add(aux);
+            aux = aux.getNoProxPessoa();
         }
-        else
-        {
-            int i=0;
-            while(lista != null)
-            {
-                if(lista.getPessoa().getCodigo()%2 == 0 && i < quantidade_pessoas)
-                {
-                    i++;
-                    lista_Alfa = inserir_na_lista(lista_Alfa, lista.getPessoa().getNome(), lista.getPessoa().getCodigo());
-                }
-                lista = lista.getNoProxPessoa();
-            }
-            return lista_Alfa;
+        System.out.println("O nomes sorteados foram");
+        for (int i = 0; i < quantidade_pessoas; i++) {
+            Collections.shuffle(listaArray);
+            sorteado = (NoPessoas) listaArray.remove(0);
+            listaArray.remove(0);
+            System.out.println("nome " + sorteado.getPessoa().getNome());
+            lista_Alfa = inserir_na_lista(lista_Alfa, sorteado.getPessoa().getNome(), sorteado.getPessoa().getCodigo());
+            Collections.shuffle(listaArray);
         }
+
+        return lista_Alfa;
+    }
+
+    public NoPessoas sobras(NoPessoas lista_Pessoas, NoPessoas lista_Alfa, NoPessoas lista_Delta) {
+        NoPessoas aux = new NoPessoas();
+
+        while (lista_Pessoas != null) {
+
+            aux = busca_Nome(lista_Pessoas.getPessoa().getNome(), lista_Alfa);
+            if (aux == null) {
+                lista_Delta = inserir_na_lista(lista_Delta, lista_Pessoas.getPessoa().getNome(), lista_Pessoas.getPessoa().getCodigo());
+            }
+            lista_Pessoas = lista_Pessoas.getNoProxPessoa();
+        }
+
+        return lista_Delta;
     }
 
     public void mostraNomes(NoPessoas lista) {
@@ -115,15 +102,14 @@ public class GerenciarListas {
             }
         }
     }
-    
-    
-        public int busca_quantidade_de_pessoas(NoPessoas lista) {
+
+    public int busca_quantidade_de_pessoas(NoPessoas lista) {
         if (lista == null) {
             return 0;
         }
-        int contador=0;
+        int contador = 0;
         NoPessoas verifica = lista;
-        while (verifica != null){
+        while (verifica != null) {
             contador++;
             verifica = verifica.getNoProxPessoa();
         }
@@ -141,8 +127,8 @@ public class GerenciarListas {
         }
         return ultimo;
     }
-    
-    //Da para usar esta função para ferificar se o nome ja existe ou não, só chamar ela e comparar
+
+    //Da para usar esta função para verificar se o nome ja existe ou não, só chamar ela e comparar
     //com o nome enviado, se eles forem iguais significa que ja existe
     public NoPessoas busca_Nome(String nome, NoPessoas lista) {
         if (lista == null) {
@@ -150,9 +136,8 @@ public class GerenciarListas {
         }
 
         NoPessoas verifica = lista;
-        while (verifica != null){
-            if(verifica.getPessoa().getNome().equals(nome))
-            {
+        while (verifica != null) {
+            if (verifica.getPessoa().getNome().equals(nome)) {
                 break;
             }
             verifica = verifica.getNoProxPessoa();
@@ -180,56 +165,50 @@ public class GerenciarListas {
             NoPessoas anterior;
             NoPessoas ultimo;
             int contador = 0;
-            
-            while(aux != null)
-            {
+
+            while (aux != null) {
                 contador++;
                 aux = aux.getNoProxPessoa();
             }
-            if(contador == 1)
-            {
+            if (contador == 1) {
                 lista = null;
                 System.out.println("só existe um nome na lista");
                 return null;
             }
-            
+
             no = busca_Nome(nome, lista);
             ultimo = buscaUltima(lista);
-            
-            if(no == null)
-            {
+
+            if (no == null) {
                 System.out.println("nome não existe na lista");
                 return lista;
             }
-                
-            if(no.getPessoa().getNome().equals(lista.getPessoa().getNome())) //verifica se é o primeiro da lista
+
+            if (no.getPessoa().getNome().equals(lista.getPessoa().getNome())) //verifica se é o primeiro da lista
             {
                 System.out.println("o nome é o primeiro da lista");
                 aux = lista.getNoProxPessoa();
                 lista = null;
-                return aux; 
-            }else if(no.getPessoa().getNome().equals(ultimo.getPessoa().getNome())) //verifica se é o ultimo valor
+                return aux;
+            } else if (no.getPessoa().getNome().equals(ultimo.getPessoa().getNome())) //verifica se é o ultimo valor
             {
                 System.out.println("O nome é o ultimo da lista");
                 aux = no.getNoAntPessoa();
                 ultimo = null;
                 aux.setNoProxPessoa(null);
                 return lista;
-            }else
-            {
+            } else {
                 aux = no.getNoProxPessoa();
                 anterior = no.getNoAntPessoa();
                 no = null;
                 anterior.setNoProxPessoa(aux);
-                return lista;   
+                return lista;
             }
-                
-        }
-        else{
+
+        } else {
             System.out.println("lista Vazia");
             return null;
         }
     }
-    
-    
+
 }
