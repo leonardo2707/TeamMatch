@@ -6,6 +6,7 @@
 package Main;
 
 
+import Funcoes.GerenciarJanelas;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class EditarPessoas extends javax.swing.JFrame {
 
- //   GerenciadorDeJanelas dados = new GerenciadorDeJanelas();
+    GerenciarJanelas dados;
 
     /**
      * Creates new form EditarPessoas
@@ -24,11 +25,11 @@ public class EditarPessoas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-/*    public EditarPessoas(GerenciadorDeJanelas dados) {
+    public EditarPessoas(GerenciarJanelas dados) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.dados = dados;
-    }*/
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,16 +117,20 @@ public class EditarPessoas extends javax.swing.JFrame {
 
         if (campoNome.getText().trim().equals("") || campoNome.getText().isEmpty()) {
             //não passou nada
-            JOptionPane.showMessageDialog(null, "Não foi possivel adicionar");
+            JOptionPane.showMessageDialog(null, "Não foi possivel adicionar está vazio");
             
         } else {
 
-            String nome = (campoNome.getText());
+            String nome = (String)campoNome.getText();
             campoNome.setText("");
-            if (nome != null && !nome.isEmpty()) {
+            
+            if (dados.adicionarPessoa(nome)) {
                 
                 JOptionPane.showMessageDialog(null, nome + " adicionado com sucesso");
                 
+            }else
+            {
+                JOptionPane.showMessageDialog(null, nome + " Não foi possivel adicionar");
             }
         }
 
