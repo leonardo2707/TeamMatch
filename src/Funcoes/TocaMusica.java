@@ -5,84 +5,55 @@
  */
 package Funcoes;
 
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
+import java.io.File;
+import java.io.FileInputStream;
+import javazoom.jl.player.Player;
 
 /**
  *
  * @author emerson
  */
-public class TocaMusica extends Thread{
-    
-    String filename;
-    
-    public void run () {
-    testPlay(filename);
-  }
+public class TocaMusica extends Thread {
 
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-    
-    public void testPlay(String filename)
-  {
-  try {
-    File file = new File(filename);
-    AudioInputStream in= AudioSystem.getAudioInputStream(file);
-    AudioInputStream din = null;
-    AudioFormat baseFormat = in.getFormat();
-    AudioFormat decodedFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
-                                                                                  baseFormat.getSampleRate(),
-                                                                                  16,
-                                                                                  baseFormat.getChannels(),
-                                                                                  baseFormat.getChannels() * 2,
-                                                                                  baseFormat.getSampleRate(),
-                                                                                  false);
-    din = AudioSystem.getAudioInputStream(decodedFormat, in);
-    // Play now.
-    rawplay(decodedFormat, din);
-    in.close();
-  } catch (Exception e)
-    {
-        //Handle exception.
-    }
-}
 
-private void rawplay(AudioFormat targetFormat, AudioInputStream din) throws IOException,                                                                                                LineUnavailableException
-{
-  byte[] data = new byte[4096];
-  SourceDataLine line = getLine(targetFormat);
-  if (line != null)
-  {
-    // Start
-    line.start();
-    int nBytesRead = 0, nBytesWritten = 0;
-    while (nBytesRead != -1)
-    {
-        nBytesRead = din.read(data, 0, data.length);
-        if (nBytesRead != -1) nBytesWritten = line.write(data, 0, nBytesRead);
-    }
-    // Stop
-    line.drain();
-    line.stop();
-    line.close();
-    din.close();
-  }
-}
+    // OBJETO PARA O ARQUIVO MP3 A SER TOCADO
+    private File mp3;
 
-private SourceDataLine getLine(AudioFormat audioFormat) throws LineUnavailableException
-{
-  SourceDataLine res = null;
-  DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
-  res = (SourceDataLine) AudioSystem.getLine(info);
-  res.open(audioFormat);
-  return res;
-} 
-    
+    // OBJETO PLAYER DA BIBLIOTECA JLAYER QUE TOCA O ARQUIVO MP3
+    private Player player;
+
+    /**
+     * CONSTRUTOR RECEBE O OBJETO FILE REFERECIANDO O ARQUIVO MP3 A SER TOCADO E
+     * ATRIBUI AO ATRIBUTO DA CLASS
+     *
+     * @param mp3
+     */
+    public void tocar(File mp3) {
+        this.mp3 = mp3;
+    }
+
+    /**
+     * ===============================================================
+     * ======================================METODO RUN QUE TOCA O MP3
+     * ===============================================================
+     */
+    public void run() {
+        try {
+            FileInputStream fis = new FileInputStream(mp3);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+
+            this.player = new Player(bis);
+            System.out.println("Tocando Musica!");
+
+            this.player.play();
+            System.out.println("Terminado Musica!");
+
+        } catch (Exception e) {
+            System.out.println("Problema ao tocar Musica" + mp3);
+            e.printStackTrace();
+        }
+    }
+
 }

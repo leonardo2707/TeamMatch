@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 public class TelaInicial extends javax.swing.JFrame {
 
     GerenciarJanelas dados = new GerenciarJanelas();
-    TocaMusica tocar = new TocaMusica();
 
     /**
      * Creates new form TelaInicial
@@ -487,8 +486,12 @@ public class TelaInicial extends javax.swing.JFrame {
         int result = fc.showOpenDialog(this);
         if(result == JFileChooser.APPROVE_OPTION){
             File selectedFile = fc.getSelectedFile();
-            tocar.setFilename(selectedFile.toString());
-            tocar.start();
+            String path = selectedFile.toString();
+            File mp3File = new File(path);
+            TocaMusica musica = new TocaMusica();
+            musica.tocar (mp3File);
+            musica.start ();
+            
         }
         
         
