@@ -34,7 +34,6 @@ public class GerenciarJanelas {
     public NoPessoas getLista_Delta() {
         return lista_Delta;
     }
-    
 
     public boolean adicionarPessoa(String nome) {
         if (nome.equals(null) || nome.equals("")) {
@@ -50,34 +49,7 @@ public class GerenciarJanelas {
         }
     }
 
-    public String pegarNomes() {
-        String nome = "";
-        NoPessoas lista = lista_Pessoas;
-        int primeiro = 0;
-        if (contador == 0) {
-            return null;
-        } else if (contador == 1) {
-            return lista_Pessoas.getPessoa().getNome();
-        } else {
-            while (lista != null) {
-                if(primeiro == 0)
-                {
-                    nome = lista.getPessoa().getNome();
-                    
-                }else
-                {
-                    nome = nome + "##$@%%$BHdas" + lista.getPessoa().getNome();
-                }
-                
-                lista = lista.getNoProxPessoa();
-            }
-
-        }
-
-        return nome;
-    }
-    
-        public void mostraNomes() {
+    public void mostraNomes() {
         NoPessoas lista = lista_Pessoas;
 
         if (lista == null) {
@@ -88,6 +60,21 @@ public class GerenciarJanelas {
                 lista = lista.getNoProxPessoa();
             }
         }
+    }
+
+    public void removerPessoa(String nome) {
+
+        lista_Pessoas = gerenteListas.removerPosicaoNome(nome, lista_Pessoas);
+
+    }
+    
+    public void dividirTimes()
+    {
+        lista_Alfa = null;
+        lista_Delta = null;
+        
+        lista_Alfa = gerenteListas.dividirTimes(lista_Pessoas, lista_Alfa);
+        lista_Delta = gerenteListas.sobras(lista_Pessoas, lista_Alfa, lista_Delta);
     }
 
 }

@@ -172,7 +172,7 @@ public class GerenciarListas {
             }
             if (contador == 1) {
                 lista = null;
-                System.out.println("só existe um nome na lista");
+              
                 return null;
             }
 
@@ -186,13 +186,13 @@ public class GerenciarListas {
 
             if (no.getPessoa().getNome().equals(lista.getPessoa().getNome())) //verifica se é o primeiro da lista
             {
-                System.out.println("o nome é o primeiro da lista");
+               
                 aux = lista.getNoProxPessoa();
                 lista = null;
                 return aux;
             } else if (no.getPessoa().getNome().equals(ultimo.getPessoa().getNome())) //verifica se é o ultimo valor
             {
-                System.out.println("O nome é o ultimo da lista");
+                
                 aux = no.getNoAntPessoa();
                 ultimo = null;
                 aux.setNoProxPessoa(null);

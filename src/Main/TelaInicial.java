@@ -7,7 +7,9 @@ package Main;
 
 import Funcoes.GerenciarJanelas;
 import Funcoes.NoPessoas;
-import java.util.regex.Pattern;
+import Funcoes.TocaMusica;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +19,7 @@ import javax.swing.JOptionPane;
 public class TelaInicial extends javax.swing.JFrame {
 
     GerenciarJanelas dados = new GerenciarJanelas();
+    TocaMusica tocar = new TocaMusica();
 
     /**
      * Creates new form TelaInicial
@@ -24,6 +27,7 @@ public class TelaInicial extends javax.swing.JFrame {
     public TelaInicial() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -41,9 +45,9 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         txtTimeDelta = new java.awt.Label();
         jPanel4 = new javax.swing.JPanel();
-        list2 = new java.awt.List();
+        timeDelta = new java.awt.List();
         jPanel5 = new javax.swing.JPanel();
-        list3 = new java.awt.List();
+        timeAlfa = new java.awt.List();
         jPanel7 = new javax.swing.JPanel();
         txtTimeAlfa = new java.awt.Label();
         jPanel8 = new javax.swing.JPanel();
@@ -54,9 +58,9 @@ public class TelaInicial extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         atualizar = new javax.swing.JButton();
-        limparCampos = new javax.swing.JButton();
+        removerItem = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        dividirTimes = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -65,6 +69,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         editarPessoas = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        tocarMusica = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,11 +83,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jlistListaPessoas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jlistListaPessoas.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jlistListaPessoas.setForeground(new java.awt.Color(254, 254, 254));
-        jlistListaPessoas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jlistListaPessoasActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -129,9 +129,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(26, 40, 222));
 
-        list2.setBackground(new java.awt.Color(95, 95, 95));
-        list2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        list2.setForeground(new java.awt.Color(7, 44, 246));
+        timeDelta.setBackground(new java.awt.Color(95, 95, 95));
+        timeDelta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        timeDelta.setForeground(new java.awt.Color(7, 44, 246));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -139,22 +139,22 @@ public class TelaInicial extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(list2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addComponent(timeDelta, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(list2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                .addComponent(timeDelta, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel5.setBackground(new java.awt.Color(234, 23, 55));
 
-        list3.setBackground(new java.awt.Color(95, 95, 95));
-        list3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        list3.setForeground(new java.awt.Color(255, 0, 0));
+        timeAlfa.setBackground(new java.awt.Color(95, 95, 95));
+        timeAlfa.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        timeAlfa.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -162,14 +162,14 @@ public class TelaInicial extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(list3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(timeAlfa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(list3, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                .addComponent(timeAlfa, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -273,43 +273,49 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        limparCampos.setText("Limpar");
-        limparCampos.addActionListener(new java.awt.event.ActionListener() {
+        removerItem.setText("Remover");
+        removerItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                limparCamposActionPerformed(evt);
+                removerItemActionPerformed(evt);
             }
         });
 
         jButton1.setText("Empate");
 
-        jButton2.setText("Dividir Times");
+        dividirTimes.setText("Dividir Times");
+        dividirTimes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dividirTimesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(limparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(removerItem, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dividirTimes, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addComponent(dividirTimes, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(limparCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(atualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(atualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(removerItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -389,6 +395,14 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenuItem5.setText("Grupos Manualmente");
         jMenu2.add(jMenuItem5);
 
+        tocarMusica.setText("Tocar Música");
+        tocarMusica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tocarMusicaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(tocarMusica);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("sobre");
@@ -420,34 +434,71 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
         // TODO add your handling code here:
-        String nomes;
+        atualizar();
+    }//GEN-LAST:event_atualizarActionPerformed
 
-        nomes = dados.pegarNomes();
+    public void atualizar() {
+
         jlistListaPessoas.clear();
+        timeAlfa.clear();
+        timeDelta.clear();
+        NoPessoas lista = dados.getLista_Pessoas();
 
-        if (nomes == null) {
+        if (lista == null) {
             JOptionPane.showMessageDialog(null, "Não existem pessoas registradas");
         } else {
-            NoPessoas lista = dados.getLista_Pessoas();
-            
-            while(lista != null)
-            {
+            while (lista != null) {
                 jlistListaPessoas.add(lista.getPessoa().getNome());
                 lista = lista.getNoProxPessoa();
             }
+
+            lista = dados.getLista_Alfa();
+
+            while (lista != null) {
+                timeAlfa.add(lista.getPessoa().getNome());
+                lista = lista.getNoProxPessoa();
+            }
+
+            lista = dados.getLista_Delta();
+
+            while (lista != null) {
+                timeDelta.add(lista.getPessoa().getNome());
+                lista = lista.getNoProxPessoa();
+            }
         }
+    }
 
-
-    }//GEN-LAST:event_atualizarActionPerformed
-
-    private void limparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparCamposActionPerformed
+    private void removerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerItemActionPerformed
         // TODO add your handling code here:
-        jlistListaPessoas.clear();
-    }//GEN-LAST:event_limparCamposActionPerformed
+        dados.removerPessoa(jlistListaPessoas.getSelectedItem());
+        jlistListaPessoas.remove(jlistListaPessoas.getSelectedItem());
+    }//GEN-LAST:event_removerItemActionPerformed
 
-    private void jlistListaPessoasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlistListaPessoasActionPerformed
+    private void dividirTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dividirTimesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jlistListaPessoasActionPerformed
+        dados.dividirTimes();
+        atualizar();
+    }//GEN-LAST:event_dividirTimesActionPerformed
+
+    private void playDJ()
+    {
+        JFileChooser fc = new JFileChooser();
+        fc.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fc.showOpenDialog(this);
+        if(result == JFileChooser.APPROVE_OPTION){
+            File selectedFile = fc.getSelectedFile();
+            tocar.setFilename(selectedFile.toString());
+            tocar.start();
+        }
+        
+        
+    }
+    
+    private void tocarMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tocarMusicaActionPerformed
+        // TODO add your handling code here:
+        playDJ();
+       
+    }//GEN-LAST:event_tocarMusicaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,9 +537,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atualizar;
+    private javax.swing.JButton dividirTimes;
     private javax.swing.JMenuItem editarPessoas;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JMenu jMenu1;
@@ -510,9 +561,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private java.awt.List jlistListaPessoas;
-    private javax.swing.JButton limparCampos;
-    private java.awt.List list2;
-    private java.awt.List list3;
+    private javax.swing.JButton removerItem;
+    private java.awt.List timeAlfa;
+    private java.awt.List timeDelta;
+    private javax.swing.JMenuItem tocarMusica;
     private java.awt.Label txtPessoas;
     private java.awt.Label txtTimeAlfa;
     private java.awt.Label txtTimeDelta;
