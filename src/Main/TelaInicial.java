@@ -446,8 +446,10 @@ public class TelaInicial extends javax.swing.JFrame {
         if (lista == null) {
             JOptionPane.showMessageDialog(null, "Não existem pessoas registradas");
         } else {
+            int i=0;
             while (lista != null) {
-                jlistListaPessoas.add(lista.getPessoa().getNome());
+                i++;
+                jlistListaPessoas.add((i) + " - " + lista.getPessoa().getNome());
                 lista = lista.getNoProxPessoa();
             }
 
@@ -479,8 +481,7 @@ public class TelaInicial extends javax.swing.JFrame {
         atualizar();
     }//GEN-LAST:event_dividirTimesActionPerformed
 
-    private void playDJ()
-    {
+    private void playDJ(){
         JFileChooser fc = new JFileChooser();
         fc.setCurrentDirectory(new File(System.getProperty("user.home")));
         int result = fc.showOpenDialog(this);

@@ -23,12 +23,14 @@ public class EditarPessoas extends javax.swing.JFrame {
     public EditarPessoas() {
         initComponents();
         this.setLocationRelativeTo(null);
+        getRootPane().setDefaultButton(btnAdicionar);
     }
 
     public EditarPessoas(GerenciarJanelas dados) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.dados = dados;
+        getRootPane().setDefaultButton(btnAdicionar);
     }
 
     /**
