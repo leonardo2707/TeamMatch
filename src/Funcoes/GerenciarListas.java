@@ -68,8 +68,7 @@ public class GerenciarListas {
             sorteado = (NoPessoas) listaArray.remove(0);
             listaArray.remove(0);
             System.out.println("nome " + sorteado.getPessoa().getNome());
-            lista_Alfa = inserir_na_lista(lista_Alfa, sorteado.getPessoa().getNome(), sorteado.getPessoa().getCodigo());
-            Collections.shuffle(listaArray);
+            lista_Alfa = inserir_na_lista(lista_Alfa, sorteado.getPessoa().getNome(), sorteado.getPessoa().getCodigo());         
         }
 
         return lista_Alfa;

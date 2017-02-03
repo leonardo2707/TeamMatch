@@ -471,8 +471,18 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void removerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerItemActionPerformed
         // TODO add your handling code here:
-        dados.removerPessoa(jlistListaPessoas.getSelectedItem());
-        jlistListaPessoas.remove(jlistListaPessoas.getSelectedItem());
+        NoPessoas lista = dados.getLista_Pessoas();
+         if (jlistListaPessoas.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Não existem pessoas selecionadas");
+         }else
+        {
+            String nome = jlistListaPessoas.getSelectedItem();
+             nome =  nome.substring(4,nome.length());
+            dados.removerPessoa(nome);
+            jlistListaPessoas.remove(jlistListaPessoas.getSelectedItem());
+        
+        }
+
     }//GEN-LAST:event_removerItemActionPerformed
 
     private void dividirTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dividirTimesActionPerformed
