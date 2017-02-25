@@ -70,7 +70,8 @@ public class GerenciarListas {
             System.out.println("nome " + sorteado.getPessoa().getNome());
             lista_Alfa = inserir_na_lista(lista_Alfa, sorteado.getPessoa().getNome(), sorteado.getPessoa().getCodigo());         
         }
-
+        
+        listaArray.clear();
         return lista_Alfa;
     }
 
